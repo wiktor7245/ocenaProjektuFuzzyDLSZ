@@ -9,6 +9,7 @@ import net.sourceforge.jFuzzyLogic.plot.JFuzzyChart;
 
 import net.sourceforge.jFuzzyLogic.rule.Rule;
 import net.sourceforge.jFuzzyLogic.rule.Variable;
+import org.python.util.PythonInterpreter;
 
 import javax.swing.*;
 
@@ -30,9 +31,14 @@ public class Ocena {
 			return;
 		}
 
+		try(PythonInterpreter pyInterp = new PythonInterpreter()) {
+			pyInterp.exec("print('Hello Python World!')");
+			pyInterp.execfile("src/com/wiktyl/main.py");
+		}
+
 		// Pokazuje reguly
 		FunctionBlock functionBlock = fis.getFunctionBlock(null);
-	        JFuzzyChart.get().chart(functionBlock);	
+//		JFuzzyChart.get().chart(functionBlock);
 
 		// Ustawia wejscia
 		fis.setVariable("koszty", 5000);
@@ -49,8 +55,8 @@ public class Ocena {
 
 		// Pokazuje wykres zmiennych wyjsciowych
 
-		JFuzzyChart.get().chart(projekt, projekt.getDefuzzifier(), true);
-		
+//		JFuzzyChart.get().chart(projekt, projekt.getDefuzzifier(), true);
+
 		// Drukuje reguly
 		System.out.println("fis");
 		System.out.println(fis);
