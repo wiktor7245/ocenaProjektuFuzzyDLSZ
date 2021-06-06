@@ -63,8 +63,8 @@ def get_text_from_image(pdf_path):
             json_data['koszt'] = i[i.index("Koszt: ") + len("Koszt: "):]
         if "Czas trwania: " in i:
             json_data['czas_trwania'] = i[i.index("Czas trwania: ") + len("Czas trwania: "):]
-        if "Trudność projektu: " in i:
-            json_data['trudnosc_projektu'] = i[i.index("Trudność projektu: ") + len("Trudność projektu: "):]
+        if "Trudność projektu (w skali 1-10): " in i:
+            json_data['trudnosc_projektu'] = i[i.index("Trudność projektu (w skali 1-10): ") + len("Trudność projektu (w skali 1-10): "):]
 
     with open(pdf_path + '.json','w',encoding='utf-8') as outfile:
         json.dump(json_data,outfile,ensure_ascii=False)

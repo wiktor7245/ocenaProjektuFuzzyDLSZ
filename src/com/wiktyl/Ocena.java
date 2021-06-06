@@ -1,5 +1,7 @@
 package com.wiktyl;
 
+import com.google.gson.stream.JsonReader;
+import com.wiktyl.model.Data;
 import net.sourceforge.jFuzzyLogic.FIS;
 import net.sourceforge.jFuzzyLogic.FunctionBlock;
 
@@ -12,12 +14,16 @@ import net.sourceforge.jFuzzyLogic.rule.Variable;
 import org.python.util.PythonInterpreter;
 
 import javax.swing.*;
+import com.google.gson.*;
 
+import java.io.FileReader;
 
 public class Ocena {
 	public static Double score = 0d;
 
 	public static void main(String[] args) throws Exception {
+
+		Data data = new Data();
 
 		setUpFrame();
 		
@@ -31,10 +37,19 @@ public class Ocena {
 			return;
 		}
 
-		try(PythonInterpreter pyInterp = new PythonInterpreter()) {
-			pyInterp.exec("print('Hello Python World!')");
-			pyInterp.execfile("src/com/wiktyl/main.py");
-		}
+//		try(PythonInterpreter pyInterp = new PythonInterpreter()) {
+//			pyInterp.exec("print('Hello Python World!')");
+//			pyInterp.execfile("src/com/wiktyl/main.py");
+//		}
+
+		GsonBuilder builder = new GsonBuilder();
+		builder.setPrettyPrinting();
+		JsonReader reader = new JsonReader(new FileReader("src/com/wiktyl/test_project.pdf.json"));
+		Gson gson = builder.create();
+		Data data_x = gson.fromJson(reader,Data.class);
+
+		//way to get data from json - simplify this in some way
+//		System.out.println(data_x.getKoszt());
 
 		// Pokazuje reguly
 		FunctionBlock functionBlock = fis.getFunctionBlock(null);
