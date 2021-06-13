@@ -13,6 +13,8 @@ import net.sourceforge.jFuzzyLogic.rule.Rule;
 import net.sourceforge.jFuzzyLogic.rule.Variable;
 import org.python.util.PythonInterpreter;
 
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
 import javax.swing.*;
 import com.google.gson.*;
 
@@ -36,6 +38,7 @@ public class Ocena {
 			System.err.println("Nie moge zaladowc pliku: '" + fileName + "'");
 			return;
 		}
+
 
 //		try(PythonInterpreter pyInterp = new PythonInterpreter()) {
 //			pyInterp.exec("print('Hello Python World!')");
