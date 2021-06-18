@@ -18,14 +18,19 @@ public class Data {
     }
 
     public short getTrudnosc() {
-        return trudnosc;
+        return trudnosc_projektu;
     }
 
     public void setTrudnosc(short trudnosc) {
-        this.trudnosc = trudnosc;
+        this.trudnosc_projektu = trudnosc;
     }
+
+    public void setZysk(long zysk) {this.zysk = zysk;}
+
+    public long getZysk() {return zysk;}
 
     private long koszt;
     private String czas_trwania;
-    private short trudnosc;
+    private short trudnosc_projektu;
+    private long zysk;
 }

@@ -34,6 +34,7 @@ import io
 import pytesseract
 import sys
 from wand.image import Image as wi
+import re
 
 
 # print("hello from script!")
@@ -70,11 +71,22 @@ def get_text_from_image(pdf_path):
         if "Koszt: " in i:
             json_data['koszt'] = i[i.index("Koszt: ") + len("Koszt: "):]
         if "Czas trwania: " in i:
-            json_data['czas_trwania'] = i[i.index(
+            czas_trwania = ''
+            in_var = i[i.index(
                 "Czas trwania: ") + len("Czas trwania: "):]
+            if 'lat' in in_var:
+                czas_trwania = int(re.search(r"[0-9]*", in_var).group(0)) * 12
+            if 'mie' in in_var:
+                czas_trwania = re.search(r"[0-9]*", in_var).group(0)
+            if 'msc' in in_var:
+                czas_trwania = re.search(r"[0-9]*", in_var).group(0)
+            json_data['czas_trwania'] = czas_trwania
         if "Trudność projektu (w skali 1-10): " in i:
             json_data['trudnosc_projektu'] = i[i.index(
                 "Trudność projektu (w skali 1-10): ") + len("Trudność projektu (w skali 1-10): "):]
+        if "Planowany zysk: " in i:
+            json_data['zysk'] = i[i.index(
+                "Planowany zysk: ") + len("Planowany zysk: "):]
 
     with open(pdf_path + '.json', 'w', encoding='utf-8') as outfile:
         json.dump(json_data, outfile, ensure_ascii=False)

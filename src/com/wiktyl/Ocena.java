@@ -25,68 +25,44 @@ public class Ocena {
 
 	public static void main(String[] args) throws Exception {
 
-		Data data = new Data();
-
 		setUpFrame();
-		
-		setFclFile();
 
-		// Load from 'FCL' file
-		String fileName = "./ocena.fcl";
-		FIS fis = FIS.load(fileName, true);
-		if( fis == null ) { 
-			System.err.println("Nie moge zaladowc pliku: '" + fileName + "'");
-			return;
-		}
-
-
-//		try(PythonInterpreter pyInterp = new PythonInterpreter()) {
-//			pyInterp.exec("print('Hello Python World!')");
-//			pyInterp.execfile("src/com/wiktyl/main.py");
+//		// Load from 'FCL' file
+//		String fileName = "./ocena.fcl";
+//		FIS fis = FIS.load(fileName, true);
+//		if( fis == null ) {
+//			System.err.println("Nie moge zaladowc pliku: '" + fileName + "'");
+//			return;
 //		}
 
-		GsonBuilder builder = new GsonBuilder();
-		builder.setPrettyPrinting();
-		JsonReader reader = new JsonReader(new FileReader("src/com/wiktyl/test_project.pdf.json"));
-		Gson gson = builder.create();
-		Data data_x = gson.fromJson(reader,Data.class);
-
-		//way to get data from json - simplify this in some way
-//		System.out.println(data_x.getKoszt());
-
 		// Pokazuje reguly
-		FunctionBlock functionBlock = fis.getFunctionBlock(null);
+//		FunctionBlock functionBlock = fis.getFunctionBlock(null);
 //		JFuzzyChart.get().chart(functionBlock);
 
 		// Ustawia wejscia
-		fis.setVariable("koszty", 5000);
-		fis.setVariable("trudnosc", 8);
-		fis.setVariable("dlugosc", 6);
+//		fis.setVariable("koszty", 5000);
+//		fis.setVariable("trudnosc", 8);
+//		fis.setVariable("dlugosc", 6);
 
 		// Wylicza zbiory rozmyte
-		fis.evaluate();
+//		fis.evaluate();
 
 		// Ustawia wyjscia
-		Variable projekt = functionBlock.getVariable("projekt");
-
-
+//		Variable projekt = functionBlock.getVariable("projekt");
 
 		// Pokazuje wykres zmiennych wyjsciowych
 
 //		JFuzzyChart.get().chart(projekt, projekt.getDefuzzifier(), true);
 
 		// Drukuje reguly
-		System.out.println("fis");
-		System.out.println(fis);
-		System.out.println("Wynik liczbowy:" + fis.getVariable("projekt").getValue());
-		System.out.println("Metoda:" + fis.getVariable("projekt").getName());
-		System.out.println("Projekt:" + fis.getVariable("projekt"));
-		System.out.println("% przynależności do zbioru \"dobry\":" + projekt.getMembership("dobry")*100 + "%");
-
-		score = fis.getVariable("projekt").getValue();
-	}
-
-	private static void setFclFile() {
+//		System.out.println("fis");
+//		System.out.println(fis);
+//		System.out.println("Wynik liczbowy:" + fis.getVariable("projekt").getValue());
+//		System.out.println("Metoda:" + fis.getVariable("projekt").getName());
+//		System.out.println("Projekt:" + fis.getVariable("projekt"));
+//		System.out.println("% przynależności do zbioru \"dobry\":" + projekt.getMembership("dobry")*100 + "%");
+//
+//		score = fis.getVariable("projekt").getValue();
 	}
 
 	private static void setUpFrame() {
